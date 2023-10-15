@@ -202,3 +202,107 @@ acct1.deposit(50)
 acct1.withdraw(75)
 acct1.withdraw(500)
 
+# Modules and packages
+import requests
+
+# export PATH=”$PATH:/usr/local/bin/python
+# /usr/bin/python3.10
+# 
+# echo export PATH="/usr/bin/python3.10:$PATH" >> ~/.profile
+
+
+from colorama import init
+init()
+from colorama import Fore
+print(Fore.RED + "some red text")
+print(Fore.GREEN + "switch to green")
+
+import openpyxl
+
+# Modules are just .py scripts
+# Packages are collections of modules, but requires the __init__.py script
+# Check out the files "mymodule.py", "myprogram.py", "MyMainPackage/"
+
+# __name__ and __main__
+if __name__=="__main__"
+
+# Exceptions and error handling
+
+def add(n1, n2):
+    print(n1+n2)
+    
+add(10, 20)
+
+number1 = 10
+number2 = input("Please provide a number: ")
+
+add(number1, number2)
+
+try:
+    result = 10 + 10
+except:
+    print("Hey it looks like you aren't adding correctly!")
+else:
+    print("Add went well!")
+    print(result)
+
+try:
+    f = open('testfile', 'r')
+    f.write("Write a test line")
+except TypeError:
+    print("ther was a type error!")
+except OSError:
+    print('Hey you have an OS error!')
+except SyntaxError:
+    print("Syntax error")
+finally:
+    print("I always run")
+    
+
+def ask_for_int():
+    while True:
+        try:
+            result = int(input("Please provide a number: "))
+        except:
+            print("Whoops! That is not a number")
+            continue
+        else:
+            print("Yes thank you")
+            break
+        finally:
+            print("End of try/except/finally")
+            print("I will always run at the end!")
+            
+ask_for_int()
+
+
+# Errors and Exceptions Homework
+
+# Problem 1
+# Handle the exception thrown by the code below by using try and except blocks
+
+for i in ['a', 'b', 'c']:
+    print(i**2)
+    
+# Problem 2
+# Handle the exception thrown by the code below by using try and except blocks. Then use a finally block to print 'All Done'
+# x=5
+# y=0
+# z = x/y
+
+x = 5
+y = 0
+try:
+    z = x / y
+except:
+    print("Divide by zero error!")
+finally:
+    "All Done"
+    
+
+# Problem3
+# Write a function that asks for an integer and prints the square of it. Use a while loop with a try, except, else block to account for incorrect inputs
+def ask():
+    pass
+
+ask()
