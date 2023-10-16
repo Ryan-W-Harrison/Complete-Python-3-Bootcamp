@@ -282,7 +282,13 @@ ask_for_int()
 # Handle the exception thrown by the code below by using try and except blocks
 
 for i in ['a', 'b', 'c']:
-    print(i**2)
+    try:
+        result = i**2
+        print(result)
+    except:
+        print(f"{i} is not a numbah!")
+
+
     
 # Problem 2
 # Handle the exception thrown by the code below by using try and except blocks. Then use a finally block to print 'All Done'
@@ -303,6 +309,19 @@ finally:
 # Problem3
 # Write a function that asks for an integer and prints the square of it. Use a while loop with a try, except, else block to account for incorrect inputs
 def ask():
-    pass
-
+    while True:
+        try:
+            result = int(input("Please provide an integer: ")) ** 2
+        except:
+            print("Whoops! That is not an integer", flush = True)
+            continue
+        else:
+            print(f"Thank you, your number squared is: {result}", flush = True)
+            break
+        finally:
+            print("Great Job!")
+            
 ask()
+
+# Update for Pylint users
+pylint myexample.py -r y
