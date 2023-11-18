@@ -210,3 +210,128 @@ pdb.set_trace()
 result2 = y+x
 print(result2)
 
+# Regex section
+
+text = "The agen't phone number is 408-555-1234. Call soon!"
+'phone' in text
+
+import re
+pattern = 'phone'
+match = re.search(pattern, text)
+
+pattern2 = "NOT IN TEXT"
+re.search(pattern2, text)
+
+match
+match.span()
+match.start()
+match.end()
+
+text = 'my phone once, my phone twice'
+match = re.search('phone', text)
+match
+matches = re.findall('phone', text)
+matches
+len(matches)
+for match in re.finditer('phone', text):
+    print(match)
+    print(match.span())
+    print(match.group())
+    
+r'mypattern\d'
+
+text = "My telephone number is 408-555-1234"
+phone = re.search(r'\d{3}-\d{3}-\d{4}', text)
+phone.group()
+
+phone = re.search(r'\d+-\d+-\d+', text)
+phone.group()
+
+phone_pattern = re.compile(r'(\d{3})-(\d{3})-(\d{4})')
+results = re.search(phone_pattern, text)
+results.group()
+results.group(1)
+results.group(2)
+results.group(3)
+
+# Or operator
+re.search(r'man|woman', "This man was here.")
+re.search(r'man|woman', "This woman was here.")
+
+re.findall(r'..at', 'The cat in the hat went splat.')
+re.findall(r'\S+at', 'The cat in the hat went splat.')
+
+re.findall(r'^\d', '1 is a number')
+re.findall(r'\d$', '1 is a number, also is 2')
+
+phrase = 'there are 3 numbers 34 inside 5 this sentence'
+pattern = r'[^\d]+'
+re.findall(pattern, phrase)
+
+test_phrase = 'This is a string! But it has punctuation. How can we remove it?'
+
+re.findall(r'[^!.? ]+', test_phrase)
+
+clean = ' '.join(re.findall('[^!.? ]+', test_phrase))
+
+
+text = 'Only find the hypen-words in this sentence. But you do not know how long-ish they are'
+re.findall(r'[\w]+-[\w]+', text)
+
+# Find words that start with cat and end with one of these options: 'fish','nap', or 'claw'
+text = 'Hello, would you like some catfish?'
+texttwo = "Hello, would you like to take a catnap?"
+textthree = "Hello, have you seen this caterpillar?"
+
+re.search(r'cat(fish|nap|claw)', text)
+re.search(r'cat(fish|nap|claw)', texttwo)
+re.search(r'cat(fish|nap|claw)', textthree)
+
+# Module puzzle
+
+import os
+cwd = os.getcwd()
+dir_zip = f'{cwd}/12-Advanced Python Modules/08-Advanced-Python-Module-Exercise'
+
+file_zip = f'{dir_zip}/unzip_me_for_instructions.zip'
+
+import shutil
+
+shutil.unpack_archive(filename = file_zip, extract_dir = dir_zip, format = 'zip')
+
+# Good work on unzipping the file!
+# You should now see 5 folders, each with a lot of random .txt files.
+# Within one of these text files is a telephone number formated ###-###-#### 
+# Use the Python os module and regular expressions to iterate through each file, open it, and search for a telephone number.
+# Good luck!
+
+# Pattern to search
+phone_pattern = re.compile(r'(\d{3})-(\d{3})-(\d{4})')
+#results = re.search(phone_pattern, text)
+text = None
+results = []
+
+def search(file, pattern = phone_pattern):
+    f = open(file, 'r')
+    text = f.read()
+    
+    if re.search(pattern, text):
+        return re.search(pattern, text)
+    else:
+        return ''
+
+for folder, sub_folders, files in os.walk(f'{dir_zip}/extracted_content'):
+    for f in files:
+        full_path = f'{folder}/{f}'
+        results.append(search(full_path))
+
+for r in results:
+    if r != '':
+        print(r.group())
+
+        
+xx = list(os.walk(f'{dir_zip}/extracted_content'))
+
+xx[0]
+xx[1]
+
